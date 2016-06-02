@@ -4,6 +4,13 @@ if (isset($_SESSION['answers'])) {
 	session_destroy();
 }
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Тест из 3х вопросов</title>
+ </head>
+ <body>
 <h3>1 Вопрос</h3>
 <form method="post" action="result.php">
     <p><b>Что такое копчик?</b></p>
@@ -24,15 +31,5 @@ if (isset($_SESSION['answers'])) {
         <input type="radio" name="answer3" value="3">Водка</p>
     <p><input type="submit"></p>
 </form>
-<h3>4 Вопрос</h3>
-<p><b>Как по вашему мнению расшифровывается аббревиатура &quot;ОС&quot;?</b></p>
-    <p><input type="radio" name="answer4" value="1">Офицерский состав<Br>
-        <input type="radio" name="answer4" value="2">Операционная система<Br>
-        <input type="radio" name="answer4" value="3">Большой полосатый мух</p>
-<h3>5 Вопрос</h3>
-    <p><b>Кто подставил Кролика Роджера?</b></p>
-    <p><input type="radio" name="answer5" value="1">Пушкин<Br>
-        <input type="radio" name="answer5" value="2">Конь в пальто<Br>
-        <input type="radio" name="answer5" value="3">Никто из перечисленных</p>
-    <p><input type="submit"></p>
-</form>
+ </body>
+</html>
