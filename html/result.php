@@ -19,7 +19,7 @@ if ($value == $answers[$key]) {
 }
 }
 if (!file_exists($userAnswers) || !$_POST) {
-	echo 'Ошибка! Пройдите тест снова';
+	echo "<b>Ошибка!</b>" . ' Нажмите кнопку "Ещё попытку!", чтобы пройти тест.';
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
