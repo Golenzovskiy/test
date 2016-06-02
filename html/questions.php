@@ -1,2 +1,2 @@
 <?php
-return array(2, 2, 1);
+return array(2, 2, 2);

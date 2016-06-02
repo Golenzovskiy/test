@@ -1,16 +1,25 @@
 <?php
 $answers = require_once('questions.php');
-session_start();
-if (empty($_SESSION['answers']) && (!empty($_POST))) {
-    foreach ($_POST as $key => $value) {
-        $_SESSION["answers"][] = $value;
-    }
-    $result = array_intersect($_SESSION['answers'], $answers);
-	foreach ($result as $key => $value) {
-        echo 'Вы правильно ответили на вопрос №' . $answer = ++$key . '<br />';
-    }
-} else {
-    echo 'Ошибка! Пройдите тест снова.' . '<br />';
+define('ROOT', dirname(__FILE__));
+$userAnswers = ROOT . '/result';
+
+if (!empty($_POST)) {
+	foreach ($_POST as $key => $value) {
+		$postAnswers["answers"][] = $value;
+	}
+file_put_contents($userAnswers, serialize($postAnswers));
+
+$uns = unserialize(file_get_contents($userAnswers));
+foreach ($uns['answers'] as $key => $value) {
+if ($value == $answers[$key]) {
+	echo 'Ответ на вопрос №' . ++$key . " правильный <br />";
+	} else {
+		echo 'Ответ на вопрос №' . ++$key . " неправильный <br />";
+	}
+}
+}
+if (!file_exists($userAnswers) || !$_POST) {
+	echo 'Ошибка! Пройдите тест снова';
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
