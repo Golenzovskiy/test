@@ -1,3 +1,10 @@
+<?php
+session_start();
+$_SESSION['userId'] = rand();
+$userId = $_SESSION['userId'];
+setcookie('userId', $userId, mktime(0,0,0,31,12,2017));
+$actionPath = 'result.php?user=' . $userId;
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
  <head>
@@ -6,7 +13,7 @@
  </head>
  <body>
 <h3>1 Вопрос</h3>
-<form method="post" action="result.php">
+<form method="post" action="<?=$actionPath;?>">
     <p><b>Что такое копчик?</b></p>
     <p><input type="radio" name="answer1" value="1">Кость скелета<Br>
         <input type="radio" name="answer1" value="2">Маленький полицейский<Br>
