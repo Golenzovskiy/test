@@ -2,19 +2,19 @@
 require_once ('functions.php');
 $rightAnswers = require_once('questions.php');
 define('ROOT', dirname(__FILE__));
-define('RESULT_DIR', '/result/');
+define('RESULT_DIR', ROOT . '/result/');
 
 session_start();
+$userIdFromGet = $_GET['user'];
 if ((isset($_SESSION['userId']) or isset($_COOKIE['userId'])) && !$_POST) {
     $restoreId = (empty($_SESSION['userId'])) ? $_COOKIE['userId'] : $_SESSION['userId'];
-    if (!isset($_GET['user'])) {
+    if (!isset($userIdFromGet)) {
         header("Location: {$_SERVER['SCRIPT_NAME']}?user={$restoreId}");
     }
     echo '<h3>Результат прошых попыток:</h3>';
-    $user = ROOT . RESULT_DIR . $_GET['user'];
+	
+    $user = RESULT_DIR . $userIdFromGet;
     if (file_exists($user)) {
-        $answersFromFile = unserialize(file_get_contents($user));
-        $user = ROOT . RESULT_DIR . $_GET['user'];
         $answersFromFile = unserialize(file_get_contents($user));
         mathAnswers($rightAnswers, $answersFromFile);
     } else {
@@ -26,7 +26,7 @@ if ((isset($_SESSION['userId']) or isset($_COOKIE['userId'])) && !$_POST) {
         $userAnswers["answers"][] = $value;
     }
 
-    writeAnswers($userAnswers);
+    writeAnswers($userAnswers, $userIdFromGet);
     mathAnswers($rightAnswers, $userAnswers);
 } else {
     writeError();

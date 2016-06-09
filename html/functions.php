@@ -5,9 +5,9 @@ function writeError()
     echo 'Нажмите кнопку "Ещё попытку!", чтобы пройти тест.';
 }
 
-function writeAnswers($userAnswers)
+function writeAnswers($userAnswers, $userIdFromGet)
 {
-    $fileAnswers = ROOT . RESULT_DIR . $_GET['user'];
+    $fileAnswers = RESULT_DIR . $userIdFromGet;
     file_put_contents($fileAnswers, serialize($userAnswers));
 }
 
