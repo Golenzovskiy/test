@@ -2,9 +2,10 @@
 require_once ('config.php');
 
 session_start();
+$userIdFromGet = $_GET['user'];
 if ((isset($_SESSION['userId']) or isset($_COOKIE['userId'])) && !$_POST) {
     $restoreId = (empty($_SESSION['userId'])) ? $_COOKIE['userId'] : $_SESSION['userId'];
-    if (!isset($_GET['user'])) {
+    if (!isset($userIdFromGet)) {
         header("Location: {$_SERVER['SCRIPT_NAME']}?user={$restoreId}");
     }
     echo '<h3>Результат прошых попыток:</h3>';
