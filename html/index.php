@@ -14,17 +14,16 @@ $actionPath = 'result.php?user=' . $userId;
  </head>
  <body>
  <form method="post" action="<?=$actionPath;?>">
-     <?php foreach ($answers as $key => $value) {
-         $question = $answers[$key++]['question'];
-         $numAnswer = $key;
-         echo "<h3>{$numAnswer} Вопрос</h3>";
-         echo "<p><b>{$question}</b></p>";
-         echo '<p>';
-            foreach ($answers[--$numAnswer]['answers'] as $key => $value) {
-                echo '<input type="radio" name="answer' . $numAnswer . ' "value="' . $key . '">' . $value . "<br>";
-            };
-         echo "</p>";
-     };?>
+     <? foreach ($answers as $key => $value) : ?>
+         <? $question = $answers[$key++]['question']; ?>
+         <h3><?= $key; ?> Вопрос</h3>
+         <p><b><?= $question; ?></b></p>
+         <p>
+         <? foreach ($answers[--$key]['answers'] as $num => $value) : ?>
+             <input type="radio" name="answer<?= $key; ?>" value="<?= $num; ?>"><?= $value; ?><br>
+         <? endforeach; ?>
+         </p>
+     <? endforeach; ?>
      <p><input type="submit"></p>
  </form>
  </body>
