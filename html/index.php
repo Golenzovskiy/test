@@ -13,7 +13,7 @@ $actionPath = 'result.php?user=' . $userId;
      <title>Тест из 3х вопросов</title>
  </head>
  <body>
- <form method="post" action="<?=$actionPath;?>">
+ <form method="post" action="<?=$actionPathROMA;?>">
      <? foreach ($answers as $key => $value) : ?>
          <? $question = $answers[$key++]['question']; ?>
          <h3><?= $key; ?> Вопрос</h3>
